@@ -1,6 +1,8 @@
-class Newsletter {
+(function($){
+
+    class Newsletter {
     constructor() {
-        this.newsletterBtn = jQuery('.js-newsletter-btn');
+        this.newsletterBtn = $('.js-newsletter-btn');
         this.newsletterForm =  this.newsletterBtn.closest('.js-newsletter-form');
         this.newsletterEmail = this.newsletterForm.find('.js-newsletter-email');
         this.newsletterAgree = this.newsletterForm.find('.js-newsletter-agree');
@@ -23,7 +25,6 @@ class Newsletter {
 
         this.newsletterBtn.on('click', (e) => {
             e.preventDefault();
-
             this.sendAjax();
         });
     }
@@ -121,4 +122,4 @@ class Newsletter {
 const newsletter = new Newsletter();
 newsletter.init();
 
-
+}(jQuery));

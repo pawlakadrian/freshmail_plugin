@@ -18,14 +18,14 @@ class freshmail
     public function __construct() {
         add_action("wp_ajax_helpuj_newsletter", "helpuj_newsletter");
         add_action("wp_ajax_nopriv_helpuj_newsletter", "helpuj_newsletter");
-        add_action('wp_enqueue_scripts', array($this, 'freshmail_enqueue_script'));
+        add_action('wp_enqueue_scripts', array($this,'freshmail_enqueue_script'));
         add_action('admin_menu', array($this,'add_page'));
         add_action('admin_init', array($this, 'page_init'));
     }
 
     public function freshmail_enqueue_script()
     {
-        wp_enqueue_script( 'custom_script_js', plugins_url('freshmail/js/newsletter.js'), ['jquery'], '1.0.0', false );
+        wp_enqueue_script( 'custom_script_js', plugins_url('freshmail/js/newsletter.js'), array( 'jquery' ), '1.0.0', true );
     } // add external scripts
 
     public function add_page() {
