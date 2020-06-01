@@ -1,8 +1,6 @@
-import $ from 'jquery';
-
-class Select {
+class Newsletter {
     constructor() {
-        this.newsletterBtn = $('.js-newsletter-btn');
+        this.newsletterBtn = jQuery('.js-newsletter-btn');
         this.newsletterForm =  this.newsletterBtn.closest('.js-newsletter-form');
         this.newsletterEmail = this.newsletterForm.find('.js-newsletter-email');
         this.newsletterAgree = this.newsletterForm.find('.js-newsletter-agree');
@@ -60,6 +58,7 @@ class Select {
     }
 
     sendAjax() {
+        console.log('ajax');
         $.ajax({
             url : ajaxurl,
             dataType : "json",
@@ -119,5 +118,7 @@ class Select {
         this.events();
     }
 }
+const newsletter = new Newsletter();
+newsletter.init();
 
-export default Select;
+

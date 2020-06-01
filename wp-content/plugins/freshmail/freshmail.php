@@ -18,14 +18,14 @@ class freshmail
     public function __construct() {
         add_action("wp_ajax_helpuj_newsletter", "helpuj_newsletter");
         add_action("wp_ajax_nopriv_helpuj_newsletter", "helpuj_newsletter");
-        add_action('admin_enqueue_scripts', 'freshmail_enqueue_script');
+        add_action('wp_enqueue_scripts', array($this, 'freshmail_enqueue_script'));
         add_action('admin_menu', array($this,'add_page'));
         add_action('admin_init', array($this, 'page_init'));
     }
 
-    function freshmail_enqueue_script()
+    public function freshmail_enqueue_script()
     {
-        wp_enqueue_script( 'custom_script_js', plugins_url('js/newsletter.js', __FILE__ ), '1.0.0', false );
+        wp_enqueue_script( 'custom_script_js', plugins_url('freshmail/js/newsletter.js'), ['jquery'], '1.0.0', false );
     } // add external scripts
 
     public function add_page() {
@@ -53,7 +53,6 @@ class freshmail
         </div>
         <?php
     } // create plugin page
-
 
     public function page_init()
     {
@@ -125,19 +124,19 @@ class freshmail
 
         if(isset($input['freshmail_url']))
             $new_input['freshmail_url'] = sanitize_text_field($input['freshmail_url']);
-
         return $new_input;
+
+
     } // clear text in input
 
-
     function helpuj_newsletter() {
-
         $email = $_REQUEST['email'];
         $agree = $_REQUEST['agree'];
         $nonce = $_REQUEST['nonce'];
-        $newsletter_list = 'r8kzmwue5y';
-        $bearer = 'MaWPQx.m4VBxbmAv6tXXZ8m78ErIE8Q0b4r7WUG9B0';
-        $freshmail_url = "https://api.freshmail.com/rest/subscriber/add";
+        $freshmailArr = get_option('freshmail');
+        $newsletter_list = $freshmailArr['freshmail_list_id'];
+        $bearer = $freshmailArr['freshmail_bearer_id'];
+        $freshmail_url = $freshmailArr['freshmail_url'];
 
         if (wp_verify_nonce( $nonce, 'helpuj-ajax')) {
             if($agree) {
