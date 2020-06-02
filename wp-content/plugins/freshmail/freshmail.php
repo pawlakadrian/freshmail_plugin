@@ -31,6 +31,7 @@ class freshmail
     public function freshmail_enqueue_script()
     {
         wp_enqueue_script('custom_script_js', plugins_url('freshmail/js/newsletter.js'), array('jquery'), '1.0.0', true);
+        wp_enqueue_style('styles', plugins_url('freshmail/css/style.css'), array(), '1.0.0', all);
     } // add external scripts
 
     function freshmail_ajax()

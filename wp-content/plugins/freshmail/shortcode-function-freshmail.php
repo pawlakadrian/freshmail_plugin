@@ -3,8 +3,8 @@ function shortcode_freshmail() {
     return
         '<form id="newsletter-form" class="newsletter__column newsletter__form js-newsletter-form">
                 <div class="newsletter__form-header">
+                    <h2 class="newsletter__title">Zapisz się do newslettera</h2>
                     <label class="newsletter__form-label label js-newsletter-label">
-                        Twój e-mail
                         <input type="email" class="input js-newsletter-email" placeholder="Twój e-mail">
                     </label>
                     <button class="newsletter__btn btn btn--primary btn--inactive js-newsletter-btn" type="submit" >
