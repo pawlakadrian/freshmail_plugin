@@ -67,7 +67,7 @@
                 action: "helpuj_newsletter",
                 email: this.newsletterEmail.val(),
                 agree: this.newsletterAgreeChecked,
-                nonce: nonce,
+                nonce,
             }
         }).done((data) => {
             switch(data.status) {
