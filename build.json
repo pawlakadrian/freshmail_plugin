@@ -4,5 +4,13 @@
             "version": "5.4.1",
             "locale": "en_US"
         }
+    },
+    "plugins": {
+        "query-monitor": {
+            "version": "3.6.0"
+        },
+        "woocommerce": {
+            "version": "4.2.0"
+        }
     }
 }
