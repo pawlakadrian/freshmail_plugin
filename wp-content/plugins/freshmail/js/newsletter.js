@@ -1,6 +1,6 @@
-import $ from 'jquery';
+(function($){
 
-class Select {
+    class Newsletter {
     constructor() {
         this.newsletterBtn = $('.js-newsletter-btn');
         this.newsletterForm =  this.newsletterBtn.closest('.js-newsletter-form');
@@ -25,7 +25,6 @@ class Select {
 
         this.newsletterBtn.on('click', (e) => {
             e.preventDefault();
-
             this.sendAjax();
         });
     }
@@ -60,6 +59,7 @@ class Select {
     }
 
     sendAjax() {
+        console.log('ajax');
         $.ajax({
             url : ajaxurl,
             dataType : "json",
@@ -67,7 +67,7 @@ class Select {
                 action: "helpuj_newsletter",
                 email: this.newsletterEmail.val(),
                 agree: this.newsletterAgreeChecked,
-                nonce: nonce,
+                nonce,
             }
         }).done((data) => {
             switch(data.status) {
@@ -119,5 +119,7 @@ class Select {
         this.events();
     }
 }
+const newsletter = new Newsletter();
+newsletter.init();
 
-export default Select;
+}(jQuery));
